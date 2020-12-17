@@ -38,5 +38,13 @@ for latent_file in latents:
   images = Gs_blended.components.synthesis.run(latent, randomize_noise=False, **synthesis_kwargs)
   Image.fromarray(images.transpose((0,2,3,1))[0], 'RGB').save(latent_file.parent / (f"{latent_file.stem}-toon.jpg"))
 
+//  
+from PIL import Image
+import matplotlib.pyplot as plt
 
+embedded = Image.open("generated/su_01.png")
+tooned = Image.open("generated/su_01-toon.jpg")
+
+plt.figure(figsize=(16, 10))
+plt.imshow(np.concatenate([np.array(embedded), np.array(tooned)], axis=1))
 
